@@ -4,7 +4,9 @@ export interface Props {
 }
 
 const { title } = Astro.props;
----
+import "../styles.scss";
+import "../reset.css"
+--- 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,21 +17,40 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body><main>
+		<div class="fade"></div>
+		<div class="light">
+		  <img src="light.png" />
+		</div>
+		<div class="me">
+		  <img src="me.png" />
+		</div>
+		<div class="donkey">
+		  <img src="donkey.png" />
+		</div>
+		<div class="heehaw">
+		  <img src="heehaw.png" />
+		</div>
+		<header>
+		  <nav>
+			<ul>
+			  <li>
+				about
+			  </li>
+			  <li>
+				writing
+			  </li>
+			  <li class="big">Michael <br />Klein</li>
+			  <li>
+				projects
+			  </li>
+			  <li>
+				blogroll
+			  </li>
+			</ul>
+		  </nav>
+		</header>
+		<slot></slot>
+	  </main>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
