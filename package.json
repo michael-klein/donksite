@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && subfont -ir --root dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^1.7.2",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "subfont": "^6.12.4"
   }
 }
