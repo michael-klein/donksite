@@ -1,0 +1,27 @@
+---
+export interface Props {
+  name: string;
+  html_url: string;
+  description: string;
+  stargazers_count: number;
+  topics: string[];
+}
+
+const { description, html_url, name, stargazers_count, topics } = Astro.props;
+
+import "./project-card.scss";
+---
+
+<li class="project-card">
+  <a href={html_url}>
+    <div>
+      <h2>
+        <div>{name}</div>
+        <div class="stars">{stargazers_count}</div>
+      </h2>
+      <p>
+        {description}
+      </p>
+    </div>
+  </a>
+</li>

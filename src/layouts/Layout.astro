@@ -1,56 +1,67 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 import "../styles.scss";
-import "../reset.css"
---- 
+import "../reset.css";
+import { Link } from "astro-link";
+---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body><main>
-		<div class="fade"></div>
-		<div class="light">
-		  <img src="light.png" />
-		</div>
-		<div class="me">
-		  <img src="me.png" />
-		</div>
-		<div class="donkey">
-		  <img src="donkey.png" />
-		</div>
-		<div class="heehaw">
-		  <img src="heehaw.png" />
-		</div>
-		<header>
-		  <nav>
-			<ul>
-			  <li>
-				about
-			  </li>
-			  <li>
-				writing
-			  </li>
-			  <li class="big">Michael <br />Klein</li>
-			  <li>
-				projects
-			  </li>
-			  <li>
-				blogroll
-			  </li>
-			</ul>
-		  </nav>
-		</header>
-		<slot></slot>
-	  </main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    ><main>
+      <div class="fade"></div>
+      <div class="light">
+        <img alt="a pillar of pink light" src="light.png" />
+      </div>
+      <div class="me">
+        <img alt="my head as a cyberpunk cyborg" src="me.png" />
+      </div>
+      <div class="donkey">
+        <img
+          alt="a cyberpunk donkey with a display embedded in it's body"
+          src="donkey.png"
+        />
+      </div>
+      <div class="heehaw">
+        <img alt="flickering text saying 'hee haw!'" src="heehaw.png" />
+      </div>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <a href="about">about</a>
+            </li>
+            <li>writing</li>
+            <li class="big"><a href="/">Michael <br />Klein</a></li>
+            <li>
+              <a href="projects">projects</a>
+            </li>
+            <li>blogroll</li>
+          </ul>
+        </nav>
+      </header>
+      <slot />
+    </main>
+	<footer>
+	  <div class="contact">
+		<p>Did I spark your interest? Please send an email to:</p>
+		<p>
+		  <Link href="mailto:michael.klein.business@gmail.com">
+			michael.klein.business[at]gmail.com
+		  </Link>
+		</p>
+	  </div>
+	</footer>
+  </body>
 </html>
