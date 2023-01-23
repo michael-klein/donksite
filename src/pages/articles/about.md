@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/MD.astro
+layout: ../../layouts/MD.astro
 title: About?
 ---
 
