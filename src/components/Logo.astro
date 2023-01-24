@@ -1,0 +1,129 @@
+<div class="fade"></div>
+<div class="logo-image light">
+  <img alt="a pillar of pink light" src="/light.png" />
+</div>
+<div class="logo-image me">
+  <img alt="my head as a cyberpunk cyborg" src="/me.png" />
+</div>
+<div class="logo-image donkey">
+  <img
+    alt="a cyberpunk donkey with a display embedded in it's body"
+    src="/donkey.png"
+  />
+</div>
+<div class="logo-image heehaw">
+  <img alt="flickering text saying 'hee haw!'" src="/heehaw.png" />
+</div>
+<style lang="scss">
+  .fade {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    height: 0px;
+    background: #101125;
+    box-shadow: 0px 0px 80px 100px #101125;
+    z-index: 500;
+  }
+
+  .light {
+    position: sticky;
+    height: 0px;
+    top: -140px;
+    z-index: 800;
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(calc(-50% + 10px));
+      top: 0px;
+      max-width: max-content;
+      width: 450px;
+    }
+  }
+  .me {
+    position: sticky;
+    height: 0px;
+    top: -60px;
+    z-index: 810;
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(calc(-50% + 10px));
+      top: 0px;
+      max-width: max-content;
+      width: 450px;
+    }
+  }
+  .donkey {
+    position: sticky;
+    height: 0px;
+    top: -90px;
+    z-index: 820;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transform: translateX(-50px);
+    img {
+      position: sticky;
+      top: 0px;
+      width: 300px;
+      height: 300px;
+    }
+  }
+  .heehaw {
+    position: sticky;
+    height: 0px;
+    top: -90px;
+    z-index: 840;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transform: translateX(-50px);
+    animation: flicker 4s linear infinite;
+    img {
+      position: sticky;
+      top: 0px;
+      width: 300px;
+      height: 300px;
+    }
+  }
+  .logo-image:not(.donkey, .heehaw) {
+    width: 0px;
+    height: 0px;
+    left: 50%;
+  }
+
+  @keyframes flicker {
+    0%,
+    19.999%,
+    22%,
+    62.999%,
+    64%,
+    64.999%,
+    70%,
+    100% {
+      opacity: 0.99;
+    }
+    20%,
+    21.999%,
+    63%,
+    63.999%,
+    65%,
+    69.999% {
+      opacity: 0.2;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .heehaw {
+      transform: scale(0.7);
+      transform-origin: 80px 100px;
+    }
+    .logo-image {
+      * {
+        text-align: left !important;
+      }
+    }
+    :global(article) {
+      font-size: 1.1rem !important;
+    }
+  }
+</style>

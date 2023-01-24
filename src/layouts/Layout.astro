@@ -6,7 +6,9 @@ export interface Props {
 const { title } = Astro.props;
 import "../reset.css";
 import "../styles.scss";
-import { Link } from "astro-link";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import Logo from "../components/Logo.astro";
 ---
 
 <!DOCTYPE html>
@@ -20,341 +22,80 @@ import { Link } from "astro-link";
   </head>
   <body
     ><main>
-      <div class="fade"></div>
-      <div class="logo-image light">
-        <img alt="a pillar of pink light" src="/light.png" />
-      </div>
-      <div class="logo-image me">
-        <img alt="my head as a cyberpunk cyborg" src="/me.png" />
-      </div>
-      <div class="logo-image donkey">
-        <img
-          alt="a cyberpunk donkey with a display embedded in it's body"
-          src="/donkey.png"
-        />
-      </div>
-      <div class="logo-image heehaw">
-        <img alt="flickering text saying 'hee haw!'" src="/heehaw.png" />
-      </div>
+      <Logo />
       <header>
-        <nav>
-          <ul>
-            <li>
-              <a href="/articles/about">about</a>
-            </li>
-            <li>writing</li>
-            <li class="big"><a href="/">Michael <br />Klein</a></li>
-            <li>
-              <a href="/articles/projects">projects</a>
-            </li>
-            <li>blogroll</li>
-          </ul>
-        </nav>
-        <div class="burger">☰</div>
-        <div class="slogan" id="slogan">front-end engineer</div>
+        <Navigation />
       </header>
       <slot />
     </main>
-    <footer>
-      <div class="contact">
-        <p>Did I spark your interest? Please send an email to:</p>
-        <p>
-          <Link href="mailto:michael.klein.business@gmail.com">
-            michael.klein.business[at]gmail.com
-          </Link>
-        </p>
-      </div>
-    </footer>
+    <Footer />
   </body>
-</html>
-<style lang="scss">
-  .fade {
-    position: fixed;
-    left: 0px;
-    right: 0px;
-    height: 0px;
-    background: #101125;
-    box-shadow: 0px 0px 80px 100px #101125;
-    z-index: 500;
-  }
-
-  body {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: sans-serif;
-    background: #101125 url(/bg.png) center;
-    padding: 0;
-    margin: 0;
-  }
-  main {
-    position: relative;
-    min-height: 100vh;
-    padding-bottom: 6rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin: 0px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-  header {
-    z-index: 1000;
-    display: block;
-    position: sticky;
-    top: -100px;
-    width: 100%;
-    height: 299px;
-
-    .burger {
-      display: none;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      font-family: OPTIWindsor;
-      color: white;
-      text-align: center;
-      text-shadow: 0px 0px 8px #cd427a;
+  <style lang="scss">
+    body {
       width: 100%;
-      max-width: 1100px;
-      left: 50%;
-      top: 120px;
-      transform: translateX(-50%);
-      align-items: center;
-      font-size: 1rem;
-      line-height: 1;
-      li {
-        flex: auto;
-        &.big {
-          flex: auto;
-          font-size: 2rem;
-          letter-spacing: -0.25rem;
-        }
-        a {
-          text-decoration: none;
-          &,
-          &:active,
-          &:link {
-            color: white;
-          }
-          &:hover {
-            color: #da5eb0;
-            text-shadow: none;
-          }
-        }
-      }
-    }
-    .slogan {
-      position: absolute;
-      top: 157px;
-      left: calc(50% + 84px);
-      width: 100px;
-      transform: translateX(-50%);
-      font-family: "Leiko";
-      line-height: 0.7rem;
-      color: white;
-      text-align: left;
-      text-shadow: 0px 0px 8px #cd427a;
-      z-index: 999999;
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
-  }
-  .light {
-    position: sticky;
-    height: 0px;
-    top: -140px;
-    z-index: 800;
-    img {
-      position: absolute;
-      left: 50%;
-      transform: translateX(calc(-50% + 10px));
-      top: 0px;
-      max-width: max-content;
-      width: 450px;
-    }
-  }
-  .me {
-    position: sticky;
-    height: 0px;
-    top: -60px;
-    z-index: 810;
-    img {
-      position: absolute;
-      left: 50%;
-      transform: translateX(calc(-50% + 10px));
-      top: 0px;
-      max-width: max-content;
-      width: 450px;
-    }
-  }
-  .donkey {
-    position: sticky;
-    height: 0px;
-    top: -90px;
-    z-index: 820;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    transform: translateX(-50px);
-    img {
-      position: sticky;
-      top: 0px;
-      width: 300px;
-      height: 300px;
-    }
-  }
-  @keyframes flicker {
-    0%,
-    19.999%,
-    22%,
-    62.999%,
-    64%,
-    64.999%,
-    70%,
-    100% {
-      opacity: 0.99;
-    }
-    20%,
-    21.999%,
-    63%,
-    63.999%,
-    65%,
-    69.999% {
-      opacity: 0.2;
-    }
-  }
-  .heehaw {
-    position: sticky;
-    height: 0px;
-    top: -90px;
-    z-index: 840;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    transform: translateX(-50px);
-    animation: flicker 4s linear infinite;
-    img {
-      position: sticky;
-      top: 0px;
-      width: 300px;
-      height: 300px;
-    }
-  }
-  .logo-image:not(.donkey, .heehaw) {
-    width: 0px;
-    height: 0px;
-    left: 50%;
-  }
-
-  @media only screen and (max-width: 600px) {
-    nav li:not(.big) {
-      display: none;
-    }
-    header,
-    .logo-image {
-      * {
-        text-align: left !important;
-      }
-    }
-    .slogan {
-      left: 132px !important;
-      font-size: 0.7rem !important;
-      width: 90px !important;
-    }
-    $offset: 30px;
-    .heehaw {
-      transform: scale(0.7);
-      transform-origin: 80px 100px;
+      overflow-x: hidden;
+      font-family: sans-serif;
+      background: #101125 url(/bg2.png);
+      background-position-x: 80vw;
+      background-size: 50%;
+      padding: 0;
+      margin: 0;
     }
     main {
-      margin-top: -$offset;
-      padding-bottom: -1 * $offset;
-      min-height: calc(100vh + $offset);
-    }
-    .burger {
-      font-family: Arial;
-      display: block !important;
-      font-family: OPTIWindsor;
-      font-weight: normal;
-      color: white;
-      text-shadow: 0px 0px 8px #cd427a;
-      font-size: 3rem;
-      position: absolute;
-      right: 0px;
-      top: 120px;
-      line-height: 1;
-    }
-
-    :global(article) {
-      font-size: 1.1rem !important;
-    }
-  }
-
-  footer {
-    background: #090a16;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 250px;
-    overflow: hidden;
-    position: relative;
-    .contact {
-      padding: 40px;
-      max-width: 900px;
-      width: 100%;
-      text-shadow: 0px 0px 8px #552b83;
-      color: #3ad9ed;
-      font-family: Gathero;
-      font-weight: bold;
-      text-align: right;
-      font-size: 1rem;
-      z-index: 1;
       position: relative;
-      &:before {
-        display: block;
-        position: absolute;
-        width: min(70vw, 550px);
-        height: min(70vw, 550px);
-        left: 0;
-        bottom: calc(max(-40vw, -280px) - 50px);
-        content: "";
-        background: url(/donkey.png) no-repeat center;
-        background-size: 100%;
-        opacity: 0.3;
-        z-index: -1;
+      min-height: 100vh;
+      padding-bottom: 6rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      background: url(/bg2.png);
+      margin: 0px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    header {
+      z-index: 1000;
+      display: block;
+      position: sticky;
+      top: -100px;
+      width: 100%;
+      height: 299px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      header {
+        * {
+          text-align: left !important;
+        }
+      }
+      $offset: 30px;
+      main {
+        margin-top: -$offset;
+        padding-bottom: -1 * $offset;
+        min-height: calc(100vh + $offset);
       }
 
-      a {
-        font-size: 1.3rem;
-        &,
-        &:active,
-        &:link {
-          color: #dcc5e2;
-        }
-        &:hover {
-          color: #da5eb0;
-          text-shadow: none;
-        }
+      :global(article) {
+        font-size: 1.1rem !important;
       }
     }
-    @media only screen and (max-width: 600px) {
-      height: 200px;
-      .contact {
-        text-align: center;
-        margin-top: -50px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 0.9rem !important;
-        &:before {
-          left: 50%;
-          transform: translateX(-50%);
-          margin-bottom: -20px;
-        }
+  </style>
+  <script>
+    const now = Date.now();
+    let queued = false;
+    window.addEventListener("scroll", () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          document.body.style.backgroundPositionY = `${
+            window.scrollY * 0.2
+          }px`;
+          document.querySelector("main").style.backgroundPositionY = `${
+            window.scrollY * 0.4
+          }px`;
+        });
       }
-    }
-  }
-</style>
+    });
+  </script>
+</html>

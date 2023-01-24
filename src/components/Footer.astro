@@ -1,0 +1,80 @@
+---
+import Link from "astro-link/Link.astro";
+---
+
+<footer>
+  <div class="contact">
+    <p>Did I spark your interest? Please send an email to:</p>
+    <p>
+      <Link href="mailto:michael.klein.business@gmail.com">
+        michael.klein.business[at]gmail.com
+      </Link>
+    </p>
+  </div>
+</footer>
+
+<style lang="scss">
+  footer {
+    background: #090a16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    .contact {
+      padding: 40px;
+      max-width: 900px;
+      width: 100%;
+      text-shadow: 0px 0px 8px #552b83;
+      color: #3ad9ed;
+      font-family: Gathero;
+      font-weight: bold;
+      text-align: right;
+      font-size: 1rem;
+      z-index: 1;
+      position: relative;
+      &:before {
+        display: block;
+        position: absolute;
+        width: min(70vw, 550px);
+        height: min(70vw, 550px);
+        left: 0;
+        bottom: calc(max(-40vw, -280px) - 50px);
+        content: "";
+        background: url(/donkey.png) no-repeat center;
+        background-size: 100%;
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      a {
+        font-size: 1.3rem;
+        &,
+        &:active,
+        &:link {
+          color: #dcc5e2;
+        }
+        &:hover {
+          color: #da5eb0;
+          text-shadow: none;
+        }
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      height: 200px;
+      .contact {
+        text-align: center;
+        margin-top: -50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 0.9rem !important;
+        &:before {
+          left: 50%;
+          transform: translateX(-50%);
+          margin-bottom: -20px;
+        }
+      }
+    }
+  }
+</style>
