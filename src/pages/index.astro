@@ -1,19 +1,14 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-const articles = (await Astro.glob("../pages/articles/*.*")).map(
-  (article) => article
-);
+import truncateMarkdown from "markdown-truncate";
+const blogEntries = await getCollection("articles");
 
-const a = {
-  _internal: { injectedFrontmatter: {} },
-  frontmatter: { layout: "../../layouts/MD.astro", title: "About?" },
-  file: "/Users/michaelklein/projects/astroportfolio/donksite/src/pages/articles/about.md",
-  url: "/articles/about",
-};
-const b = {
-  file: "/Users/michaelklein/projects/astroportfolio/donksite/src/pages/articles/projects.astro",
-  url: "/articles/projects",
-};
+const entries: CollectionEntry<"articles">[] = blogEntries;
+const contents = [];
+for (const entry of entries) {
+  contents.push(entry.body);
+}
 ---
 
 <Layout title="HEE HAW!">
@@ -24,9 +19,6 @@ const b = {
       an unhealthy obsession with donkeys<a href="about#donkeys" class="why"
         >(why?)</a
       >.
-    </p>
-    <p style={{ wordBreak: "break-all" }}>
-      {JSON.stringify(articles)}
     </p>
   </article>
 </Layout>

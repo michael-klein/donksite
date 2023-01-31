@@ -11,9 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^0.15.1",
     "@astrojs/turbolinks": "^0.1.4",
-    "astro": "^1.7.2",
+    "astro": "^2.0.1",
     "astro-link": "^1.1.4",
+    "markdown-truncate": "^1.0.4",
     "sass": "^1.57.1",
     "subfont": "^6.12.4"
   }
