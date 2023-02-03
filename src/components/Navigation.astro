@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li>
-      <a href="/articles/about">about</a>
+      <a href="/articles/about">about<span class="slash">/</span>cv</a>
     </li>
     <li>writing</li>
     <li class="big"><a href="/">Michael <br />Klein</a></li>
@@ -9,20 +9,31 @@
       <a href="/articles/projects">projects</a>
     </li>
     <li>blogroll</li>
+    <button class="burger" id="close-nav">X</button>
   </ul>
 </nav>
 <button class="burger" id="burger">☰</button>
-<div class="slogan" id="slogan">front-end engineer</div>
+<div class="slogan" id="slogan">
+  <div class="name">Michael <br />Klein</div><span class="title"
+    >front-end<br />engineer</span
+  >
+</div>
 <script is:inline>
   requestAnimationFrame(() => {
-    const burger = document.getElementById("burger");
-    burger.addEventListener("click", () => {
-      document.querySelector("nav").classList.toggle("show");
-    });
+    Array.from(document.querySelectorAll("#burger, #close-nav")).forEach(
+      (el) => {
+        el.addEventListener("click", () => {
+          document.querySelector("nav").classList.toggle("show");
+        });
+      }
+    );
   });
 </script>
 <style lang="scss">
   .burger {
+    display: none;
+  }
+  nav #close-nav {
     display: none;
   }
   nav ul {
@@ -44,7 +55,7 @@
     font-size: 1rem;
     line-height: 1;
     li {
-      flex: auto;
+      flex: 1;
       &.big {
         flex: auto;
         font-size: 2rem;
@@ -61,13 +72,21 @@
           color: #da5eb0;
           text-shadow: none;
         }
+        span.slash {
+          font-size: 1.3em;
+          transform: translateY(0.1em);
+          margin-right: -0.1em;
+          display: inline-block;
+          color: #45dcef;
+          text-shadow: 0px 0px 8px #45dcef;
+        }
       }
     }
   }
   .slogan {
     position: absolute;
-    top: 157px;
-    left: calc(50% + 84px);
+    top: 155px;
+    left: calc(50% + 96px);
     width: 100px;
     transform: translateX(-50%);
     font-family: "Leiko";
@@ -78,13 +97,35 @@
     z-index: 999999;
     font-size: 0.8rem;
     font-weight: bold;
+    .name {
+      display: none;
+    }
   }
 
   @media only screen and (max-width: 600px) {
     .slogan {
-      left: 132px !important;
+      left: 0px !important;
       font-size: 0.7rem !important;
-      width: 90px !important;
+      width: 0px !important;
+      z-index: 7999;
+      position: absolute;
+      top: 90px;
+      white-space: pre;
+      .name {
+        margin-bottom: 0.2rem;
+        font-family: OPTIWindsor;
+        letter-spacing: -0.25rem;
+        font-size: 2rem;
+        line-height: 1;
+        margin-left: -0.2rem;
+        display: block;
+        position: absolute;
+      }
+      .title {
+        position: absolute;
+        top: 3.6rem;
+        left: 5.2rem;
+      }
     }
     .burger {
       background: transparent;
@@ -96,17 +137,17 @@
       color: white;
       text-shadow: 0px 0px 8px #cd427a;
       font-size: 3rem;
-      position: fixed;
+      position: absolute;
       right: 10px;
-      top: 0px;
+      top: 110px;
       cursor: pointer;
       line-height: 1;
-      z-index: 8001;
+      z-index: 7999;
     }
     nav {
       ul {
         overflow: hidden;
-        transition: height 0.3 ease-in-out;
+        transition: height 0.2s ease-in-out;
         position: fixed;
         left: 0px;
         top: 0px;
@@ -121,20 +162,42 @@
         align-items: center;
         gap: 2rem;
         .big {
-          display: none;
+          flex: 0 !important;
+          font-size: 3rem !important;
+        }
+        li {
+          opacity: 0;
+          transition: opacity 0.1s ease-in-out;
         }
         li:not(.big) {
           flex: 0;
-          font-size: 3rem;
+          font-size: 2.5rem;
           //isplay: none;
         }
       }
-      &.show ul {
-        height: 100vh;
+      #close-nav {
+        font-family: Leiko;
+        opacity: 0;
+        position: absolute;
+        transition: opacity 0.1s ease-in-out;
+        top: 20px;
+        right: 30px;
+        display: block !important;
+        color: white;
+        text-shadow: 0px 0px 8px #cd427a;
+        z-index: 100000;
       }
-    }
-    .slogan {
-      display: none;
+      &.show {
+        #close-nav {
+          opacity: 1;
+        }
+        ul {
+          height: 100vh;
+          li {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 </style>
